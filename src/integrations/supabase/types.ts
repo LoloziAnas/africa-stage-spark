@@ -16,33 +16,361 @@ export type Database = {
     Tables: {
       Event: {
         Row: {
+          category: string | null
+          cover_image_url: string | null
           created_at: string
+          creator_id: string | null
           description: string | null
+          end_date: string | null
           id: number
+          is_free: boolean | null
           location: string | null
-          name: string | null
-          ticket_type: string | null
-          time: string | null
+          max_attendees: number | null
+          start_date: string | null
+          status: string | null
+          title: string
+          updated_at: string | null
+          video_url: string | null
         }
         Insert: {
+          category?: string | null
+          cover_image_url?: string | null
           created_at?: string
+          creator_id?: string | null
           description?: string | null
+          end_date?: string | null
           id?: number
+          is_free?: boolean | null
           location?: string | null
-          name?: string | null
-          ticket_type?: string | null
-          time?: string | null
+          max_attendees?: number | null
+          start_date?: string | null
+          status?: string | null
+          title?: string
+          updated_at?: string | null
+          video_url?: string | null
         }
         Update: {
+          category?: string | null
+          cover_image_url?: string | null
           created_at?: string
+          creator_id?: string | null
           description?: string | null
+          end_date?: string | null
           id?: number
+          is_free?: boolean | null
           location?: string | null
-          name?: string | null
-          ticket_type?: string | null
-          time?: string | null
+          max_attendees?: number | null
+          start_date?: string | null
+          status?: string | null
+          title?: string
+          updated_at?: string | null
+          video_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "Event_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payments: {
+        Row: {
+          amount: number
+          created_at: string | null
+          currency: string | null
+          id: string
+          metadata: Json | null
+          payment_method: string
+          payment_provider: string
+          provider_payment_id: string | null
+          status: string | null
+          ticket_id: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          metadata?: Json | null
+          payment_method: string
+          payment_provider: string
+          provider_payment_id?: string | null
+          status?: string | null
+          ticket_id?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          metadata?: Json | null
+          payment_method?: string
+          payment_provider?: string
+          provider_payment_id?: string | null
+          status?: string | null
+          ticket_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_ticket_id_fkey"
+            columns: ["ticket_id"]
+            isOneToOne: false
+            referencedRelation: "tickets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payouts: {
+        Row: {
+          account_details: Json | null
+          amount: number
+          created_at: string | null
+          creator_id: string | null
+          currency: string | null
+          id: string
+          payout_method: string | null
+          processed_at: string | null
+          status: string | null
+        }
+        Insert: {
+          account_details?: Json | null
+          amount: number
+          created_at?: string | null
+          creator_id?: string | null
+          currency?: string | null
+          id?: string
+          payout_method?: string | null
+          processed_at?: string | null
+          status?: string | null
+        }
+        Update: {
+          account_details?: Json | null
+          amount?: number
+          created_at?: string | null
+          creator_id?: string | null
+          currency?: string | null
+          id?: string
+          payout_method?: string | null
+          processed_at?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payouts_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string | null
+          creator_verified: boolean | null
+          full_name: string | null
+          id: string
+          phone_number: string | null
+          preferred_payment_method: string | null
+          updated_at: string | null
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string | null
+          creator_verified?: boolean | null
+          full_name?: string | null
+          id: string
+          phone_number?: string | null
+          preferred_payment_method?: string | null
+          updated_at?: string | null
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string | null
+          creator_verified?: boolean | null
+          full_name?: string | null
+          id?: string
+          phone_number?: string | null
+          preferred_payment_method?: string | null
+          updated_at?: string | null
+          username?: string | null
         }
         Relationships: []
+      }
+      ticket_types: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          event_id: number | null
+          id: string
+          is_active: boolean | null
+          name: string
+          price: number | null
+          quantity_available: number | null
+          quantity_sold: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          event_id?: number | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          price?: number | null
+          quantity_available?: number | null
+          quantity_sold?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          event_id?: number | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          price?: number | null
+          quantity_available?: number | null
+          quantity_sold?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ticket_types_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "Event"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tickets: {
+        Row: {
+          buyer_id: string | null
+          checked_in_at: string | null
+          created_at: string | null
+          event_id: number | null
+          id: string
+          payment_id: string | null
+          purchase_amount: number | null
+          qr_code: string | null
+          status: string | null
+          ticket_type_id: string | null
+        }
+        Insert: {
+          buyer_id?: string | null
+          checked_in_at?: string | null
+          created_at?: string | null
+          event_id?: number | null
+          id?: string
+          payment_id?: string | null
+          purchase_amount?: number | null
+          qr_code?: string | null
+          status?: string | null
+          ticket_type_id?: string | null
+        }
+        Update: {
+          buyer_id?: string | null
+          checked_in_at?: string | null
+          created_at?: string | null
+          event_id?: number | null
+          id?: string
+          payment_id?: string | null
+          purchase_amount?: number | null
+          qr_code?: string | null
+          status?: string | null
+          ticket_type_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tickets_buyer_id_fkey"
+            columns: ["buyer_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tickets_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "Event"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tickets_ticket_type_id_fkey"
+            columns: ["ticket_type_id"]
+            isOneToOne: false
+            referencedRelation: "ticket_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tips: {
+        Row: {
+          amount: number
+          created_at: string | null
+          creator_id: string | null
+          currency: string | null
+          event_id: number | null
+          id: string
+          message: string | null
+          payment_id: string | null
+          status: string | null
+          tipper_id: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          creator_id?: string | null
+          currency?: string | null
+          event_id?: number | null
+          id?: string
+          message?: string | null
+          payment_id?: string | null
+          status?: string | null
+          tipper_id?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          creator_id?: string | null
+          currency?: string | null
+          event_id?: number | null
+          id?: string
+          message?: string | null
+          payment_id?: string | null
+          status?: string | null
+          tipper_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tips_creator_id_fkey"
+            columns: ["creator_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tips_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "Event"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tips_tipper_id_fkey"
+            columns: ["tipper_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
