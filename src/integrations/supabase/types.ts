@@ -20,12 +20,9 @@ export type Database = {
           cover_image_url: string | null
           created_at: string
           creator_id: string | null
-          end_date: string | null
           id: number
           is_free: boolean | null
-          location: string | null
           max_attendees: number | null
-          start_date: string | null
           status: string | null
           updated_at: string | null
           video_url: string | null
@@ -35,12 +32,9 @@ export type Database = {
           cover_image_url?: string | null
           created_at?: string
           creator_id?: string | null
-          end_date?: string | null
           id?: number
           is_free?: boolean | null
-          location?: string | null
           max_attendees?: number | null
-          start_date?: string | null
           status?: string | null
           updated_at?: string | null
           video_url?: string | null
@@ -50,12 +44,9 @@ export type Database = {
           cover_image_url?: string | null
           created_at?: string
           creator_id?: string | null
-          end_date?: string | null
           id?: number
           is_free?: boolean | null
-          location?: string | null
           max_attendees?: number | null
-          start_date?: string | null
           status?: string | null
           updated_at?: string | null
           video_url?: string | null
