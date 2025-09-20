@@ -14,13 +14,12 @@ export type Database = {
   }
   public: {
     Tables: {
-      Event: {
+      events: {
         Row: {
           category: string | null
           cover_image_url: string | null
           created_at: string
           creator_id: string | null
-          description: string | null
           end_date: string | null
           id: number
           is_free: boolean | null
@@ -28,7 +27,6 @@ export type Database = {
           max_attendees: number | null
           start_date: string | null
           status: string | null
-          title: string
           updated_at: string | null
           video_url: string | null
         }
@@ -37,7 +35,6 @@ export type Database = {
           cover_image_url?: string | null
           created_at?: string
           creator_id?: string | null
-          description?: string | null
           end_date?: string | null
           id?: number
           is_free?: boolean | null
@@ -45,7 +42,6 @@ export type Database = {
           max_attendees?: number | null
           start_date?: string | null
           status?: string | null
-          title?: string
           updated_at?: string | null
           video_url?: string | null
         }
@@ -54,7 +50,6 @@ export type Database = {
           cover_image_url?: string | null
           created_at?: string
           creator_id?: string | null
-          description?: string | null
           end_date?: string | null
           id?: number
           is_free?: boolean | null
@@ -62,7 +57,6 @@ export type Database = {
           max_attendees?: number | null
           start_date?: string | null
           status?: string | null
-          title?: string
           updated_at?: string | null
           video_url?: string | null
         }
@@ -245,7 +239,7 @@ export type Database = {
             foreignKeyName: "ticket_types_event_id_fkey"
             columns: ["event_id"]
             isOneToOne: false
-            referencedRelation: "Event"
+            referencedRelation: "events"
             referencedColumns: ["id"]
           },
         ]
@@ -299,7 +293,7 @@ export type Database = {
             foreignKeyName: "tickets_event_id_fkey"
             columns: ["event_id"]
             isOneToOne: false
-            referencedRelation: "Event"
+            referencedRelation: "events"
             referencedColumns: ["id"]
           },
           {
@@ -360,7 +354,7 @@ export type Database = {
             foreignKeyName: "tips_event_id_fkey"
             columns: ["event_id"]
             isOneToOne: false
-            referencedRelation: "Event"
+            referencedRelation: "events"
             referencedColumns: ["id"]
           },
           {
