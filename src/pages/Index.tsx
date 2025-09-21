@@ -4,9 +4,12 @@ import { Card } from "@/components/ui/card";
 import { Header } from "@/components/Header";
 import { EventFeed } from "@/components/EventFeed";
 import { Navigation } from "@/components/Navigation";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-events.jpg";
 
 const Index = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -47,6 +50,7 @@ const Index = () => {
                 variant="hero"
                 size="lg" 
                 className="font-semibold px-8 py-4 text-lg"
+                onClick={() => navigate('/auth')}
               >
                 <Play className="w-5 h-5 mr-2" />
                 Explore Events
@@ -56,6 +60,7 @@ const Index = () => {
                 size="lg" 
                 variant="outline" 
                 className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 text-lg"
+                onClick={() => navigate('/auth')}
               >
                 <Zap className="w-5 h-5 mr-2" />
                 Become a Creator
