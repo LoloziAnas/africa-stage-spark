@@ -1,73 +1,182 @@
-# Welcome to your Lovable project
+# EventHub - African Events & Creators Platform
 
-## Project info
+EventHub is a modern, TikTok-style events platform designed specifically for African creators and event-goers. Discover vibrant events across Africa, support talented creators, and be part of the continent's growing creator economy.
 
-**URL**: https://lovable.dev/projects/99689e21-0d07-4f69-9060-2a9515e7bbdb
+## ✨ Features
 
-## How can I edit this code?
+### 🎬 TikTok-Style Event Discovery
+- **Video Previews**: Watch engaging video previews before purchasing tickets
+- **Vertical Feed**: Scroll through events in a familiar, mobile-first interface
+- **Interactive Cards**: Like, share, and save events for later
 
-There are several ways of editing your application.
+### 👥 Creator Economy
+- **Creator Profiles**: Verified creator accounts with bio and portfolio
+- **Event Creation**: Easy-to-use event creation tools for creators
+- **Revenue Sharing**: Support African creators through ticket sales
 
-**Use Lovable**
+### 💳 Local Payment Integration
+- **M-Pesa**: Kenya's leading mobile payment solution
+- **MTN MoMo**: Mobile money across multiple African countries
+- **Paystack**: Card payments and bank transfers
+- **Multi-currency Support**: Local currency pricing
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/99689e21-0d07-4f69-9060-2a9515e7bbdb) and start prompting.
+### 🌍 African-Focused
+- **200+ Cities**: Coverage across major African cities
+- **Local Events**: Community-driven event discovery
+- **Cultural Celebration**: Showcase African culture and creativity
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Technology Stack
 
-**Use your preferred IDE**
+### Frontend
+- **React 18** - Modern React with hooks and concurrent features
+- **TypeScript** - Type-safe development
+- **Vite** - Lightning-fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - Beautiful, accessible UI components
+- **React Router** - Client-side routing
+- **TanStack Query** - Server state management
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Backend & Database
+- **Supabase** - Backend-as-a-Service platform
+- **PostgreSQL** - Robust relational database
+- **Row Level Security** - Fine-grained access control
+- **Real-time Subscriptions** - Live updates and notifications
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Development Tools
+- **ESLint** - Code linting and formatting
+- **TypeScript ESLint** - TypeScript-specific linting rules
+- **PostCSS** - CSS processing and optimization
 
-Follow these steps:
+## 📦 Installation & Setup
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
+- Node.js 18+ and npm (install with [nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
+- Git
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Local Development
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. **Clone the repository**
+   ```bash
+   git clone <YOUR_GIT_URL>
+   cd africa-stage-spark
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Setup**
+   - Copy `.env.example` to `.env` (if available)
+   - Configure your Supabase credentials:
+     ```env
+     VITE_SUPABASE_URL=your_supabase_url
+     VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+     ```
+
+4. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to `http://localhost:5173` to see the application
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run build:dev` - Build in development mode
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## 🏗️ Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── ui/             # shadcn/ui components
+│   ├── EventCard.tsx   # Event display component
+│   ├── EventFeed.tsx   # Event listing component
+│   ├── Header.tsx      # Navigation header
+│   └── Navigation.tsx  # Bottom navigation
+├── pages/              # Route components
+│   ├── Index.tsx       # Homepage
+│   └── NotFound.tsx    # 404 page
+├── hooks/              # Custom React hooks
+├── lib/                # Utility functions
+├── integrations/       # External service integrations
+└── App.tsx            # Main application component
+
+supabase/
+├── migrations/         # Database schema migrations
+└── config.toml        # Supabase configuration
+```
+
+## 🗄️ Database Schema
+
+The application uses Supabase with the following main tables:
+
+- **profiles** - User profiles and creator information
+- **Event** - Event details, media, and metadata
+- **tickets** - Ticket purchases and attendee information
+- **categories** - Event categorization
+- **payments** - Payment processing records
+
+## 🚀 Deployment
+
+### Lovable Platform
+1. Visit the [Lovable Project](https://lovable.dev/projects/99689e21-0d07-4f69-9060-2a9515e7bbdb)
+2. Click Share → Publish
+3. Your application will be automatically deployed
+
+### Custom Domain
+To connect a custom domain:
+1. Navigate to Project > Settings > Domains
+2. Click "Connect Domain"
+3. Follow the DNS configuration instructions
+
+For more details: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## 🔧 Environment (Web)
+
+Create a `.env` file in the project root for Supabase:
+
+```
+VITE_SUPABASE_URL="https://YOUR_PROJECT.supabase.co"
+VITE_SUPABASE_PUBLISHABLE_KEY="YOUR_SUPABASE_ANON_KEY"
+VITE_SUPABASE_PROJECT_ID="YOUR_PROJECT_ID"
+```
+
+Then run the app locally:
+
+```
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🤝 Contributing
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+We welcome contributions to EventHub! Please feel free to submit issues, feature requests, or pull requests.
 
-**Use GitHub Codespaces**
+### Development Workflow
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📄 License
 
-## What technologies are used for this project?
+This project is part of the African creator economy initiative. Please respect local laws and creator rights when using this platform.
 
-This project is built with:
+## 🌟 Stats
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **10K+** Active Creators
+- **50K+** Events Hosted
+- **200+** Cities Covered
+- **1M+** Happy Guests
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/99689e21-0d07-4f69-9060-2a9515e7bbdb) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Built with ❤️ for African creators and communities.
